@@ -1,16 +1,67 @@
 ---
+import BaseLayout from "../layouts/BaseLayout.astro";
 
+const pageTitle = "Café & Orígenes";
+
+const infoCafe = {
+  nombreCientifico: "Coffea",
+  origen: "Etiopía",
+  metodosDePreparacion: [
+    "V60",
+    "Aeropress",
+    "Chemex",
+    "Espresso",
+    "French Press",
+  ],
+};
+
+const tuestes = ["ligero", "medio", "medio-oscuro", "oscuro"];
+
+const tomoCafe = true;
+const azucar = false;
+const tazas = 2;
+
+const colorCafe = "burlywood";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout pageTitle={pageTitle}>
+  <body>
+    <style define:vars={{ colorCafe }}>
+      h2 {
+        color: var(--colorCafe);
+      }
+
+      .metodo {
+        list-style: square;
+        color: greenyellow;
+      }
+    </style>
+
+    <h2>Información del Café</h2>
+    <p>Nombre Científico: {infoCafe.nombreCientifico}</p>
+    <p>Origen: {infoCafe.origen}</p>
+    <p>Métodos de Preparación:</p>
+    <ul>
+      {
+        infoCafe.metodosDePreparacion.map((metodo) => (
+          <li class="metodo">{metodo}</li>
+        ))
+      }
+    </ul>
+
+    <h2>Tuestes</h2>
+    <ul>
+      {tuestes.map((tueste) => <li>{tueste}</li>)}
+    </ul>
+
+    {tomoCafe && <p>Tomo café</p>}
+    {azucar ? <p>con azúcar</p> : <p>sin azúcar</p>}
+    {
+      tomoCafe && tazas >= 3 ? (
+        <p>más de 3 tazas al día</p>
+      ) : tomoCafe ? (
+        <p>menos de 3 tazas al día</p>
+      ) : null
+    }
+  </body>
+</BaseLayout>

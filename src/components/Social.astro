@@ -1,0 +1,14 @@
+---
+const { platform, username } = Astro.props; // esta línea es la que nos da acceso a las props en Astro
+---
+
+<style>
+  a {
+    padding: 0.5rem 1rem;
+    color: white;
+    background-color: #4c1d95;
+    text-decoration: none;
+  }
+</style>
+
+<a href={`https://www.${platform}.com/${username}`}>{platform}</a>
