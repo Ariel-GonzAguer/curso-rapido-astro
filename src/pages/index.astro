@@ -1,6 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-
+import Bienvenida from "../components/Bienvenida";
 const pageTitle = "Café & Orígenes";
 
 const infoCafe = {
@@ -36,6 +36,11 @@ const colorCafe = "burlywood";
         color: greenyellow;
       }
     </style>
+
+    <Bienvenida
+      client:load
+      mensajes={["Hello", "Hola", "Bonjour", "Hallo", "Konichiwa"]}
+    />
 
     <h2>Información del Café</h2>
     <p>Nombre Científico: {infoCafe.nombreCientifico}</p>
